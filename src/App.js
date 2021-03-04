@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Description:
+ * @Author: iwillbe12138
+ * @Date: 2021-02-24 15:53:12
+ * @LastEditTime: 2021-03-05 02:20:11
+ * @LastEditors:
+ */
+import React, { Component } from 'react';
+import Xiaojiejie from './Xiaojiejie';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    render() {
+        return <Xiaojiejie />;
+    }
 }
 
 export default App;
