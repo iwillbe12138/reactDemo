@@ -2,11 +2,12 @@
  * @Description:demo
  * @Author: iwillbe12138
  * @Date: 2021-03-05 01:02:17
- * @LastEditTime: 2021-03-08 21:20:35
+ * @LastEditTime: 2021-03-09 10:01:51
  * @LastEditors:
  */
 
 import React, { Component, Fragment } from 'react';
+import './style.css';
 //Fragment  碎片  可以最外层不用div
 class Xiaojiejie extends Component {
     render() {
@@ -15,6 +16,7 @@ class Xiaojiejie extends Component {
             <Fragment>
                 <div>
                     <input
+                        className="input"
                         value={this.state.inputValue}
                         onChange={this.inputChange.bind(this)}
                     ></input>
@@ -22,7 +24,15 @@ class Xiaojiejie extends Component {
                 </div>
                 <ul>
                     {this.state.list.map((item, index) => {
-                        return <li key={index + item}>{item}</li>;
+                        return (
+                            <li
+                                onClick={this.deleteItem.bind(this, index)}
+                                key={index + item}
+                                dangerouslySetInnerHTML={{ __html: item }} //html解析
+                            >
+                                {/* {item} */}
+                            </li>
+                        );
                     })}
                 </ul>
             </Fragment>
@@ -46,6 +56,14 @@ class Xiaojiejie extends Component {
         this.setState({
             list: [...this.state.list, this.state.inputValue],
             inputValue: '',
+        });
+    }
+    deleteItem(index) {
+        console.log(index);
+        let list = this.state.list;
+        list.splice(index, 1);
+        this.setState({
+            list: list,
         });
     }
 }
