@@ -2,12 +2,13 @@
  * @Description:demo
  * @Author: iwillbe12138
  * @Date: 2021-03-05 01:02:17
- * @LastEditTime: 2021-03-13 23:21:31
+ * @LastEditTime: 2021-03-16 18:06:01
  * @LastEditors: iwillbe12138
  */
 
 import React, { Component, Fragment } from "react";
 import "./style.css";
+import XiaojiejieItem from  './XiaojiejieItem'
 //Fragment  碎片  可以最外层不用div
 class Xiaojiejie extends Component {
   render() {
@@ -27,13 +28,7 @@ class Xiaojiejie extends Component {
         <ul>
           {this.state.list.map((item, index) => {
             return (
-              <li
-                onClick={this.deleteItem.bind(this, index)}
-                key={index + item}
-                dangerouslySetInnerHTML={{ __html: item }} //html解析
-              >
-                {/* {item} */}
-              </li>
+              <div key='index'><XiaojiejieItem/></div>
             );
           })}
         </ul>
