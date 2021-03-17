@@ -2,7 +2,7 @@
  * @Description:demo
  * @Author: iwillbe12138
  * @Date: 2021-03-05 01:02:17
- * @LastEditTime: 2021-03-16 18:06:01
+ * @LastEditTime: 2021-03-17 22:38:58
  * @LastEditors: iwillbe12138
  */
 
@@ -28,7 +28,8 @@ class Xiaojiejie extends Component {
         <ul>
           {this.state.list.map((item, index) => {
             return (
-              <div key='index'><XiaojiejieItem/></div>
+              // 父组件
+              <div key={index}><XiaojiejieItem name={item} /></div>
             );
           })}
         </ul>
