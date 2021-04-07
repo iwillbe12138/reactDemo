@@ -2,7 +2,7 @@
  * @Description:demo
  * @Author: iwillbe12138
  * @Date: 2021-03-05 01:02:17
- * @LastEditTime: 2021-03-28 02:10:17
+ * @LastEditTime: 2021-04-07 12:58:45
  * @LastEditors: iwillbe12138
  */
 
@@ -11,6 +11,7 @@ import "./style.css";
 import XiaojiejieItem from "./XiaojiejieItem";
 import Boss from "./Boss";
 import axios from "axios";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 //Fragment  碎片  可以最外层不用div
 class Xiaojiejie extends Component {
     render() {
@@ -36,19 +37,29 @@ class Xiaojiejie extends Component {
                         this.ul = ul;
                     }}
                 >
-                    {this.state.list.map((item, index) => {
-                        return (
-                            // 父组件
-                            <XiaojiejieItem
-                                // avname="吉泽明步"
-                                key={index + item}
-                                name={item}
-                                index={index}
-                                list={this.state.list} //单向数据流  不能在子组件修改
-                                deleteItem={this.deleteItem.bind(this)}
-                            />
-                        );
-                    })}
+                    <TransitionGroup>
+                        {this.state.list.map((item, index) => {
+                            return (
+                                // 父组件
+                                <CSSTransition
+                                    timeout={2000}
+                                    classNames="boss-text"
+                                    unmountOnExit
+                                    appear={true}
+                                    key={index + item}
+                                >
+                                    <XiaojiejieItem
+                                        // avname="吉泽明步"
+                                        key={index + item}
+                                        name={item}
+                                        index={index}
+                                        list={this.state.list} //单向数据流  不能在子组件修改
+                                        deleteItem={this.deleteItem.bind(this)}
+                                    />
+                                </CSSTransition>
+                            );
+                        })}
+                    </TransitionGroup>
                 </ul>
                 <Boss></Boss>
             </Fragment>
