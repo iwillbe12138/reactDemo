@@ -5,13 +5,14 @@
  * @LastEditTime: 2021-02-27 22:27:04
  * @LastEditors:
  */
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import ToDoList from './demo/ToDoList'
 
 //jsx js 与xml 结合  <  解析成html   {} 解析成
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<ToDoList />, document.getElementById('root'))
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';

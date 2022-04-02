@@ -2,16 +2,16 @@
  * @Description:demo
  * @Author: iwillbe12138
  * @Date: 2021-03-05 01:02:17
- * @LastEditTime: 2021-04-07 12:58:45
- * @LastEditors: iwillbe12138
+ * @LastEditTime: 2022-02-13 18:16:19
+ * @LastEditors: IWillBe12138
  */
 
-import React, { Component, Fragment } from "react";
-import "./style.css";
-import XiaojiejieItem from "./XiaojiejieItem";
-import Boss from "./Boss";
-import axios from "axios";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React, { Component, Fragment } from 'react'
+import './style.css'
+import XiaojiejieItem from './XiaojiejieItem'
+import Boss from './Boss'
+import axios from 'axios'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 //Fragment  碎片  可以最外层不用div
 class Xiaojiejie extends Component {
     render() {
@@ -27,14 +27,14 @@ class Xiaojiejie extends Component {
                         value={this.state.inputValue}
                         onChange={this.inputChange.bind(this)}
                         ref={(inputed) => {
-                            this.inputed = inputed;
+                            this.inputed = inputed
                         }}
                     ></input>
                     <button onClick={this.addList.bind(this)}>增加服务</button>
                 </div>
                 <ul
                     ref={(ul) => {
-                        this.ul = ul;
+                        this.ul = ul
                     }}
                 >
                     <TransitionGroup>
@@ -57,36 +57,36 @@ class Xiaojiejie extends Component {
                                         deleteItem={this.deleteItem.bind(this)}
                                     />
                                 </CSSTransition>
-                            );
+                            )
                         })}
                     </TransitionGroup>
                 </ul>
                 <Boss></Boss>
             </Fragment>
-        );
+        )
     }
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            inputValue: "",
+            inputValue: '',
             list: [],
-        };
+        }
     }
     componentDidMount() {
         axios
             .get(
-                "https://mock.mengxuegu.com/mock/605f6f45f2e38f3a2f6b9b6c/ReactDemoStudy/xiaojiejei"
+                'https://mock.mengxuegu.com/mock/605f6f45f2e38f3a2f6b9b6c/ReactDemoStudy/xiaojiejei'
             )
             .then((res) => {
-                console.log("axios 获取数据成功" + JSON.stringify(res));
+                console.log('axios 获取数据成功' + JSON.stringify(res))
                 this.setState({
                     list: res.data.data,
-                });
+                })
             })
             .catch((err) => {
-                console.log("获取数据失败" + err);
-            });
+                console.log('获取数据失败' + err)
+            })
     }
     // shouldComponentUpdate() {
     //   console.log("shouldComponentUpdate ");
@@ -103,30 +103,31 @@ class Xiaojiejie extends Component {
     inputChange() {
         this.setState({
             inputValue: this.inputed.value,
-        });
+        })
         // console.log(e.target.value);
     }
     addList() {
+        console.log(11)
         // console.time("start");
         this.setState(
             {
                 list: [...this.state.list, this.state.inputValue],
-                inputValue: "",
+                inputValue: '',
+            },
+            () => {
+                console.log(this.state.list)
             }
-            // () => {
-            //   console.log(this.ul.querySelectorAll("li").length);
-            // }
-        );
+        )
         // console.log(this.ul.querySelectorAll("li").length);
         //结论  setState  回调函数方式 效率高  async尝试也可以运行  效率比不上  回调函数方式
         // console.timeEnd("start");
     }
     deleteItem(index) {
-        let list = this.state.list;
-        list.splice(index, 1);
+        let list = this.state.list
+        list.splice(index, 1)
         this.setState({
             list: list,
-        });
+        })
     }
 }
-export default Xiaojiejie;
+export default Xiaojiejie
