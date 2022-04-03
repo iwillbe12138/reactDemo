@@ -2,7 +2,7 @@
  * @Description:ToDoList
  * @Author: IWillBe12138
  * @Date: 2021-09-13 17:06:50
- * @LastEditTime: 2022-04-02 20:26:37
+ * @LastEditTime: 2022-04-03 20:50:48
  * @LastEditors: IWillBe12138
  */
 import React, { Component } from 'react'
@@ -10,6 +10,7 @@ import 'antd/dist/antd.css'
 import { Input, Button, List } from 'antd'
 import XiaojiejeiItem from '../XiaojiejieItem'
 import store from '../store'
+import { CHANGE_INPUT, ADD_LIST, DELETE_ITEM } from '../store/actionTypes'
 
 const data = [
     '早8点开晨会，分配今天的开发任务',
@@ -59,7 +60,13 @@ class ToDoList extends Component {
                     dataSource={this.state.list}
                     renderItem={
                         // item => <XiaojiejeiItem content={item} />
-                        item => <List.Item>{item}</List.Item>
+                        (item, index) => (
+                            <List.Item
+                                onClick={this.deleteItem.bind(this, index)}
+                            >
+                                {item}
+                            </List.Item>
+                        )
                     }
                 />
                 {/* {this.state.list.map((item, index) => {
@@ -76,31 +83,25 @@ class ToDoList extends Component {
         )
     }
     changeInputValue(e) {
-        // this.setState({
-        //     inputValue: e.target.value
-        //     // inputValue: this.input.value,
-        // })
         const action = {
-            type: 'changeInput'
+            type: CHANGE_INPUT,
+            value: e.target.value
         }
-        let s = symbol
         store.dispatch(action)
     }
-    addList() {
+    async addList() {
         const action = {
-            type: 'addList',
-            value: this.state.inputValue
+            type: ADD_LIST
         }
-        store.dispatch(action)
+        await store.dispatch(action)
     }
     deleteItem(index) {
-        let list = this.state.list
-        list.splice(index, 1)
-        this.setState({
-            list: list
-        })
+        const action = {
+            type: DELETE_ITEM,
+            value: index
+        }
+        store.dispatch(action)
     }
-    //
     storeChange() {
         this.setState(store.getState())
     }
