@@ -2,7 +2,7 @@
  * @Description:reducer
  * @Author: IWillBe12138
  * @Date: 2022-03-16 05:56:49
- * @LastEditTime: 2022-04-03 20:51:16
+ * @LastEditTime: 2022-04-05 17:44:14
  * @LastEditors: IWillBe12138
  */
 import { CHANGE_INPUT, ADD_LIST, DELETE_ITEM } from './actionTypes'
@@ -25,7 +25,6 @@ export default (state = defaultState, action) => {
         return newState
     } else if (action.type === ADD_LIST) {
         // let newState = JSON.parse(JSON.stringify(state))
-        console.log(newState.inputValue)
         newState.list.push(newState.inputValue)
         newState.inputValue = ''
         return newState
